@@ -2,223 +2,190 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Enquiry Form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enquiry Form – Literacy Education</title>
+
 <style>
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:#f4f6f8;
-  margin:0;
-  padding:10px;
+html, body { height:100%; margin:0; }
+body {
+  display:flex; flex-direction:column;
+  font-family:Arial,sans-serif; background:#f4f6f8;
 }
-.container{
-  max-width:900px;
-  margin:auto;
+
+main {
+  padding-bottom: 140px;   /* reserve space for fixed footer */
+}
+
+
+.container {
+  max-width:700px;
+  margin: 20px auto 0;   /* top | left-right | bottom */
   background:#fff;
   padding:20px;
   border-radius:6px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
-h1,h2{text-align:center;margin:10px 0}
-label{font-weight:bold;display:block;margin-bottom:2px;}
-input, select{width:100%;padding:8px;margin-bottom:8px;border:1px solid #ccc;border-radius:4px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-fieldset{border:1px solid #ccc;margin-top:15px;padding:10px;border-radius:4px}
-legend{font-weight:bold;padding:0 5px}
-
-.subject-table{
-  width:100%;
-  border-collapse:collapse;
-}
-.subject-table td{
-  border:1px solid #ccc;
-  padding:6px 8px;
-}
-.subject-cell{text-align:left}
-.check-cell{text-align:center;width:40px}
-
-button{
-  padding:10px 15px;
-  margin-top:15px;
-  cursor:pointer;
-  background:#007bff;
-  color:#fff;
-  border:none;
-  border-radius:4px;
-  transition:0.2s;
-}
-button:hover{background:#0056b3}
-
-footer{
-  text-align:center;
-  font-size:14px;
-  margin-top:20px;
-  color:#555;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
-@media(max-width:600px){
-  .grid{grid-template-columns:1fr}
+.header{text-align:center;margin-bottom:20px}
+.header h2{margin:5px 0;letter-spacing:2px}
+.header p{margin:3px 0;font-size:14px}
+hr{border:none;border-top:1px solid #ccc;margin:20px 0}
+h3{margin-bottom:10px;color:#2c3e50}
+.form-group{margin-bottom:12px}
+label{display:block;font-weight:bold;font-size:14px;margin-bottom:4px}
+input,textarea{
+  width:100%;padding:8px;font-size:14px;
+  border:1px solid #ccc;border-radius:4px;
+}
+textarea{resize:vertical;min-height:45px}
+.radio-group{display:flex;gap:15px;margin-top:6px}
+.radio-box{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 14px;border:1px solid #ccc;
+  border-radius:20px;cursor:pointer;
+  background:#f9f9f9;
+}
+.submit-btn{
+  padding:10px 30px;font-size:15px;
+  border:none;border-radius:25px;
+  background:#2c7be5;color:#fff;cursor:pointer;
+}
+.submit-btn:hover{background:#1f5fc1}
+.footer{
+  position:fixed;bottom:0;left:0;width:100%;
+  background:#f4f6f8;text-align:center;
+  padding:10px;font-size:13px;color:#666;
+  border-top:1px solid #ddd;
+}
+
+@media(max-width:480px){
+  .footer{font-size:12px;padding:6px}
+  
 }
 </style>
 </head>
 
 <body>
+
+<main>
+<form id="enquiryForm" novalidate>
+
 <div class="container">
+<p style="text-align:right">Form # LE0001</p>
 
-<h1>Literacy Education</h1>
-<h2>Enquiry Form</h2>
-
-<form id="enquiryForm" autocomplete="off">
-
-<div class="grid">
-  <div>
-    <label for="date">Date</label>
-    <input type="date" id="date" name="date" required>
-  </div>
-  <div>
-    <label for="studentName">Student Name</label>
-    <input id="studentName" name="studentName" required>
-  </div>
-  <div>
-    <label for="className">Class</label>
-    <input id="className" name="className" required>
-  </div>
+<div class="header">
+  <h2><strong>Literacy Education</strong></h2>
+  <p>417-Naroda Business Point</p>
+  <p>Nr. Maharshi Sandipani School – Naroda</p>
+  <p>📞 +91 6355 823 220 | ✉️ Lgrey667@gmail.com</p>
+  <h2>ENQUIRY FORM</h2>
 </div>
 
-<fieldset>
-<legend>Subjects Required</legend>
-<table class="subject-table">
-<tr>
-  <td class="subject-cell">All Subjects</td>
-  <td class="check-cell"><input type="checkbox" id="all"></td>
-  <td class="subject-cell">Computer Science</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Computer Science"></td>
-</tr>
-<tr>
-  <td class="subject-cell">Physics</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Physics"></td>
-  <td class="subject-cell">Chemistry</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Chemistry"></td>
-</tr>
-<tr>
-  <td class="subject-cell">Mathematics</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Mathematics"></td>
-  <td class="subject-cell">Biology</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Biology"></td>
-</tr>
-<tr>
-  <td class="subject-cell">History & Civics</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="History & Civics"></td>
-  <td class="subject-cell">Geography</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Geography"></td>
-</tr>
-<tr>
-  <td class="subject-cell">English</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="English"></td>
-  <td class="subject-cell">Hindi</td>
-  <td class="check-cell"><input type="checkbox" class="sub" value="Hindi"></td>
-</tr>
-</table>
-</fieldset>
+<hr>
+<h3>STUDENT’S DETAILS</h3>
 
-<fieldset>
-<legend>Parents Details</legend>
-<div class="grid">
-  <div><label for="father">Father Name</label><input id="father" name="father"></div>
-  <div><label for="mother">Mother Name</label><input id="mother" name="mother"></div>
-  <div><label for="mobile1">Mobile No. 1</label><input id="mobile1" name="mobile1" type="tel" pattern="[0-9]{10}" required></div>
-  <div><label for="mobile2">Mobile No. 2</label><input id="mobile2" name="mobile2" type="tel" pattern="[0-9]{10}"></div>
-  <div><label for="email">Email</label><input id="email" name="email" type="email"></div>
+<div class="form-group">
+<label>Student Name</label>
+<input type="text" name="studentName" required>
+
+<div class="radio-group">
+  <label class="radio-box">
+    <input type="radio" name="gender" value="Male" checked required> Male
+  </label>
+  <label class="radio-box">
+    <input type="radio" name="gender" value="Female"> Female
+  </label>
 </div>
-</fieldset>
-
-<fieldset>
-<legend>Address</legend>
-<div class="grid">
-  <input id="flat" name="flat" placeholder="Flat / House No">
-  <input id="building" name="building" placeholder="Building Name">
-  <input id="street" name="street" placeholder="Street Name">
-  <input id="landmark" name="landmark" placeholder="Landmark">
-  <input id="city" name="city" placeholder="City / District">
-  <input id="state" name="state" placeholder="State">
-  <input id="pin" name="pin" placeholder="Pin Code" pattern="[0-9]{6}">
 </div>
-</fieldset>
 
-<button type="submit">Submit</button>
+<div class="form-group">
+<label>Standard</label>
+<input type="text" name="standard" required>
+</div>
 
+<div class="form-group">
+<label>Name of School</label>
+<input type="text" name="school" required>
+</div>
+
+<div class="form-group">
+<label>School Timings</label>
+<div class="radio-group">
+  <label class="radio-box">
+    <input type="radio" name="schoolTiming" value="Morning" checked required> Morning
+  </label>
+  <label class="radio-box">
+    <input type="radio" name="schoolTiming" value="Afternoon"> Afternoon
+  </label>
+</div>
+</div>
+
+<hr>
+<h3>PARENT’S DETAILS</h3>
+
+<div class="form-group">
+<label>Name</label>
+<input type="text" name="parentName" required>
+</div>
+
+<div class="form-group">
+<label>Occupation</label>
+<input type="text" name="occupation">
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<textarea name="address"></textarea>
+</div>
+
+<div class="form-group">
+<label>Contact No.</label>
+<input type="tel" name="contact" pattern="[6-9][0-9]{9}" maxlength="10" required>
+</div>
+
+<div class="form-group">
+<label>Alternate Contact No.</label>
+<input type="tel" name="altContact" pattern="[6-9][0-9]{9}" maxlength="10">
+</div>
+
+<div class="form-group">
+<label>Email ID</label>
+<input type="email" name="email" required>
+</div>
+
+<div style="text-align:center;margin-top:15px">
+<button type="submit" class="submit-btn">Submit Enquiry</button>
+</div>
+
+</div>
 </form>
+</main>
 
-<footer>
-<b>Literacy Education</b><br>
-📞 +91 6355 823 220
+<footer class="footer">
+© <span id="year"></span> Developed by <strong>Biansuv Technologies LLP</strong>
 </footer>
 
-</div>
-
 <script>
-// ======= DEFAULT DATE =======
-const dateInput = document.getElementById("date");
-dateInput.valueAsDate = new Date();
+document.getElementById("enquiryForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  if(!this.checkValidity()){ this.reportValidity(); return; }
+  if(!confirm("Are you sure you want to submit this enquiry?")) return;
 
-// ======= SUBJECT CHECKBOX LOGIC =======
-const allBox = document.getElementById("all");
-const subs = document.querySelectorAll(".sub");
+  const data = Object.fromEntries(new FormData(this).entries());
 
-allBox.addEventListener("change", () => {
-  subs.forEach(cb => {
-    cb.checked = allBox.checked;
-    cb.disabled = allBox.checked;
+  fetch("https://script.google.com/macros/s/AKfycbz0r1NnG1yFcWQEJzpUlfjLClYhuWq5ja7nueNtoP2yRmv5hgcwy1CBaCsXKz7nwyT3/exec", {
+  method: "POST",
+  body: JSON.stringify(data)
+})
+
+  .then(() => {
+    alert("Enquiry submitted successfully!");
+    this.reset();
   });
 });
 
-// ======= FORM SUBMISSION =======
-document.getElementById("enquiryForm").addEventListener("submit", async e => {
-  e.preventDefault();
-
-  const subjects = allBox.checked
-    ? ["All Subjects"]
-    : Array.from(document.querySelectorAll(".sub:checked")).map(cb => cb.value);
-
-  const payload = {
-    date: dateInput.value,
-    studentName: document.getElementById("studentName").value,
-    className: document.getElementById("className").value,
-    subjects,
-    fatherName: document.getElementById("father").value,
-    motherName: document.getElementById("mother").value,
-    mobile1: document.getElementById("mobile1").value,
-    mobile2: document.getElementById("mobile2").value,
-    email: document.getElementById("email").value,
-    flat: document.getElementById("flat").value,
-    building: document.getElementById("building").value,
-    street: document.getElementById("street").value,
-    landmark: document.getElementById("landmark").value,
-    city: document.getElementById("city").value,
-    state: document.getElementById("state").value,
-    pin: document.getElementById("pin").value
-  };
-
-  try {
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbxs2hJKzd1ITBTO78Vf5RJSnqIOtcJuxBsA6RFkgLMQ8Z1L3vPX-7Wpdsj1OpmCi4ZR/exec",
-      {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(payload)
-      }
-    );
-
-    alert("✅ Enquiry submitted successfully!");
-    e.target.reset();
-    subs.forEach(cb => cb.disabled = false);
-  } catch(err) {
-    console.error(err);
-    alert("❌ Submission failed. Check network.");
-  }
-});
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
 </html>
-
