@@ -6,6 +6,14 @@
 <title>Enquiry Form – Literacy Education</title>
 
 <style>
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
 html, body { height:100%; margin:0; }
 body {
   display:flex; flex-direction:column;
@@ -33,10 +41,16 @@ hr{border:none;border-top:1px solid #ccc;margin:20px 0}
 h3{margin-bottom:10px;color:#2c3e50}
 .form-group{margin-bottom:12px}
 label{display:block;font-weight:bold;font-size:14px;margin-bottom:4px}
+
 input,textarea{
-  width:100%;padding:8px;font-size:14px;
-  border:1px solid #ccc;border-radius:4px;
+  width:100%;
+  padding:8px;
+  font-size:14px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  box-sizing: border-box;   /* ⭐ THIS IS THE KEY */
 }
+
 textarea{resize:vertical;min-height:45px}
 .radio-group{display:flex;gap:15px;margin-top:6px}
 .radio-box{
@@ -128,6 +142,33 @@ textarea{resize:vertical;min-height:45px}
 <input type="text" name="parentName" required>
 </div>
 
+<!-- Salutation -->
+  <div class="radio-group" style="margin-bottom:6px">
+    <label class="radio-box">
+      <input type="radio" name="salutation" value="Mr." checked>
+      Mr.
+    </label>
+    <label class="radio-box">
+      <input type="radio" name="salutation" value="Ms.">
+      Ms.
+    </label>
+    <label class="radio-box">
+      <input type="radio" name="salutation" value="Mrs.">
+      Mrs.
+    </label>
+  </div>
+
+<div class="form-group">
+  <label>Relationship with Student</label>
+  <input
+    type="text"
+    name="relationship"
+    placeholder="e.g. Father / Mother / Guardian / Uncle"
+  >
+</div>
+
+
+
 <div class="form-group">
 <label>Occupation</label>
 <input type="text" name="occupation">
@@ -169,7 +210,8 @@ textarea{resize:vertical;min-height:45px}
 </footer>
 
 <script>
-document.getElementById("enquiryForm").addEventListener("submit", function(e){
+
+document.getElementById("enquiryForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   if (!this.checkValidity()) {
@@ -177,29 +219,48 @@ document.getElementById("enquiryForm").addEventListener("submit", function(e){
     return;
   }
 
+  // 1️⃣ Collect form data
+  const data = Object.fromEntries(new FormData(this).entries());
+
+  // 2️⃣ Trim all string values
+  for (const key in data) {
+    if (typeof data[key] === "string") {
+      data[key] = data[key].trim();
+    }
+  }
+
+  // 3️⃣ Soft validation for Relationship
+  if (!data.relationship) {
+    const proceed = confirm(
+      "You have not entered the relationship with the student.\n\nDo you want to continue?"
+    );
+    if (!proceed) {
+      return;
+    }
+  }
+
+  // 4️⃣ Final confirmation
   if (!confirm("Are you sure you want to submit this enquiry?")) {
     return;
   }
 
+  // 5️⃣ Disable submit button
   const submitBtn = document.getElementById("submitBtn");
   submitBtn.disabled = true;
   submitBtn.textContent = "Submitting...";
 
-  const data = Object.fromEntries(new FormData(this).entries());
-
+  // 6️⃣ Submit
   fetch("https://script.google.com/macros/s/AKfycbz0r1NnG1yFcWQEJzpUlfjLClYhuWq5ja7nueNtoP2yRmv5hgcwy1CBaCsXKz7nwyT3/exec", {
     method: "POST",
     body: JSON.stringify(data)
   })
   .then(() => {
-  alert("Enquiry submitted successfully!");
-  this.reset();
+    alert("Enquiry submitted successfully!");
+    this.reset();
 
-  // 🔽 RESET BUTTON STATE
-  submitBtn.disabled = false;
-  submitBtn.textContent = "Submit Enquiry";
-})
-
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Enquiry";
+  })
   .catch(() => {
     alert("Something went wrong. Please try again.");
     submitBtn.disabled = false;
@@ -208,8 +269,39 @@ document.getElementById("enquiryForm").addEventListener("submit", function(e){
 });
 
 
+
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
+<script>
+
+/* Disable right-click */
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  alert("Right-click is disabled on this page.");
+});
+
+/* Disable DevTools shortcuts */
+document.addEventListener("keydown", function (e) {
+  // F12
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) {
+    e.preventDefault();
+  }
+
+  // Ctrl+U (view source)
+  if (e.ctrlKey && e.key === "u") {
+    e.preventDefault();
+  }
+});
+</script>
+
+
+
 
 </body>
 </html>
