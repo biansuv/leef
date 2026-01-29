@@ -13,7 +13,7 @@ body {
 }
 
 main {
-  padding-bottom: 140px;   /* reserve space for fixed footer */
+  padding-bottom: 30px;   /* reserve space for fixed footer */
 }
 
 
@@ -154,7 +154,10 @@ textarea{resize:vertical;min-height:45px}
 </div>
 
 <div style="text-align:center;margin-top:15px">
-<button type="submit" class="submit-btn">Submit Enquiry</button>
+<button type="submit" id="submitBtn" class="submit-btn">
+  Submit Enquiry
+</button>
+
 </div>
 
 </div>
@@ -168,21 +171,42 @@ textarea{resize:vertical;min-height:45px}
 <script>
 document.getElementById("enquiryForm").addEventListener("submit", function(e){
   e.preventDefault();
-  if(!this.checkValidity()){ this.reportValidity(); return; }
-  if(!confirm("Are you sure you want to submit this enquiry?")) return;
+
+  if (!this.checkValidity()) {
+    this.reportValidity();
+    return;
+  }
+
+  if (!confirm("Are you sure you want to submit this enquiry?")) {
+    return;
+  }
+
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
 
   const data = Object.fromEntries(new FormData(this).entries());
 
   fetch("https://script.google.com/macros/s/AKfycbz0r1NnG1yFcWQEJzpUlfjLClYhuWq5ja7nueNtoP2yRmv5hgcwy1CBaCsXKz7nwyT3/exec", {
-  method: "POST",
-  body: JSON.stringify(data)
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+  alert("Enquiry submitted successfully!");
+  this.reset();
+
+  // 🔽 RESET BUTTON STATE
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Submit Enquiry";
 })
 
-  .then(() => {
-    alert("Enquiry submitted successfully!");
-    this.reset();
+  .catch(() => {
+    alert("Something went wrong. Please try again.");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Enquiry";
   });
 });
+
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
