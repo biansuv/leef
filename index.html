@@ -89,7 +89,7 @@ textarea{resize:vertical;min-height:45px}
 
 <div class="header">
   <h2><strong>Literacy Education</strong></h2>
-  <p>417-Naroda Business Point</p>
+  <p>414-Naroda Business Point</p>
   <p>Nr. Maharshi Sandipani School – Naroda</p>
   <p>📞 +91 6355 823 220 | ✉️ Lgrey667@gmail.com</p>
   <h2>ENQUIRY FORM</h2>
@@ -114,7 +114,25 @@ textarea{resize:vertical;min-height:45px}
 
 <div class="form-group">
 <label>Standard</label>
-<input type="text" name="standard" required>
+
+<input type="text" name="standard" required
+list="standard"
+    placeholder="e.g. 6/7/8/9/10/11/12"
+  >
+
+    <datalist id="standard">
+    <option value="6">
+    <option value="7">
+    <option value="8">
+    <option value="9">
+    <option value="10">
+    <option value="11">
+    <option value="12">
+    </datalist>  
+
+
+
+
 </div>
 
 <div class="form-group">
@@ -123,14 +141,24 @@ textarea{resize:vertical;min-height:45px}
 </div>
 
 <div class="form-group">
-<label>School Timings</label>
+<label>Stream</label>
 <div class="radio-group">
   <label class="radio-box">
-    <input type="radio" name="schoolTiming" value="Morning" checked required> Morning
+    <input type="radio" name="stream" value="CBSE" checked required> CBSE
   </label>
   <label class="radio-box">
-    <input type="radio" name="schoolTiming" value="Afternoon"> Afternoon
+    <input type="radio" name="stream" value="GSEB"> GSEB
   </label>
+
+  <label class="radio-box">
+    <input type="radio" name="stream" value="ICSE"> ICSE
+  </label>
+
+  <label class="radio-box">
+    <input type="radio" name="stream" value="IB"> IB
+  </label>
+
+
 </div>
 
 <div class="form-group">
@@ -140,7 +168,6 @@ textarea{resize:vertical;min-height:45px}
     name="subjectsRequired"
     list="subjectsList"
     placeholder="e.g. Maths, Science, Commerce"
-
   >
 
   <datalist id="subjectsList">
@@ -188,8 +215,18 @@ textarea{resize:vertical;min-height:45px}
   <input
     type="text"
     name="relationship"
+    list="relationship"
     placeholder="e.g. Father / Mother / Guardian / Uncle"
   >
+
+    <datalist id="relationship">
+    <option value="Father">
+    <option value="Mother">
+    <option value="Guardian">
+    <option value="Uncle">
+    <option value="Brother">
+    <option value="Sister">
+    </datalist>  
 </div>
 
 
